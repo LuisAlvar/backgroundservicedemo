@@ -22,3 +22,25 @@ Add the following NuGet Packages:
 ```bash
 dotnet add package Microsoft.Extensions.Http --version 6.0.0
 ```
+
+### Publish the app 
+**Important Information**
+
+To create the .NET Worker Servicen as a Windows Service, it's recommended that you publish the app as a single file executable. **It's less error-prone to have a self-contained executable, as there aren't any dependent files lying around the file system**. 
+
+In this case, I will publish as an .exe. 
+
+```xml
+    <OutputType>exe</OutputType>
+    <PublishSingleFile Condition="'$(Configuration)' == 'Release'">true</PublishSingleFile>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PlatformTarget>x64</PlatformTarget>
+```
+
+The project file now contains the following information
+* create a console application 
+* Enable single-file publishing 
+* Runtime Id as windows x64 
+* target platform CPU of 64-bit
+
+

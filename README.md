@@ -43,4 +43,31 @@ The project file now contains the following information
 * Runtime Id as windows x64 
 * target platform CPU of 64-bit
 
+```bash 
+dotnet publish --output ./app/publish
+```
+
+
+### Create the Windows Service 
+
+```bash 
+echo "Set-Location"
+$RootFolderPath = Get-Location 
+$PublishDLLPath = "app/publish/"
+$TargetDLL = "BackgroundServiceDemo.exe"
+$FullPath = join-path -path $RootFolderPath -childpath $PublishDLLPath
+$FullPath = ($FullPath + $TargetDLL)
+sc.exe create ".NET Joke Service" binpath=$FullPath
+```
+
+How to run the powershell script: powershell -executionpolicy bypass -File .\CreateWindowsService.ps1
+
+### Configure The Windows Service 
+Optional, if we are okay with the service defaults.
+Windows Services provide recovery configuraiton options.
+* Query the current configuraiton using the following; outputs the recovery configuration 
+  ```bash
+    sc.exe qfailure ".NET Joke Service"
+  ```
+
 

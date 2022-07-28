@@ -69,5 +69,7 @@ Windows Services provide recovery configuraiton options.
   ```bash
     sc.exe qfailure ".NET Joke Service"
   ```
-
-
+* To configure recover user the **failure** option not the **qfailure**
+  ```bash 
+    sc.exe failure ".NET Joke Service" reset=0 actions=restart/60000/restart/60000/run/1000
+  ```
